@@ -1,0 +1,6 @@
+@font-face {
+  font-family: 'Libre Baskerville';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Libre Baskerville Italic'), local('LibreBaskerville-Italic'), url(https://fonts.gstatic.com/l/font?kit=kmKhZrc3Hgbbcjq75U4uslyuy4kn0qNcaxMCCOM&skey=44cd15477bf5bb2d&v=v5) format('woff2');
+}
