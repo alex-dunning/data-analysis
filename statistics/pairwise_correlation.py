@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 " \
 Author: A. Dunning \
 Date: March 2018 \
@@ -26,8 +26,8 @@ def gen_pointpoint_pc(col):
     return pc_d
 
 "make a dict to identify which of the above methods to use according to a string"
-key = {'A':['pointpoint','fromstart'],
-        'operation':[gen_pointpoint_pc,gen_fromstart_pc]}
+key = pd.DataFrame({'A':['pointpoint','fromstart'],
+        'operation':[gen_pointpoint_pc,gen_fromstart_pc]})
 
 "run gen_<which>_pc on all symbols in the dataframe, returning a new 'percentage change' dateframe df_p. res_rule determines the resampling ('D', 'W', 'M', ...)"
 def gen_pc_df(df_i, res_rule, which):
@@ -35,9 +35,9 @@ def gen_pc_df(df_i, res_rule, which):
     df_i = df_i.resample(res_rule).backfill()
     for symbol in df_i.columns.values:
         if df_p.empty:
-            df_p = key['operation'][key['A']==which](df_i[symbol])
+            df_p = key['operation'][key['A']==which].iloc[0](df_i[symbol])
         else:
-            df_p[symbol] = key['operation'][key['A']==which](df_i[symbol])
+            df_p[symbol] = key['operation'][key['A']==which].iloc[0](df_i[symbol])
     return df_p
 
 "generate the correlation coefficients for all possible stock pairs, for data sampled at various intervals; put them in a dataframe"
